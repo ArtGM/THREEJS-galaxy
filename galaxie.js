@@ -160,7 +160,7 @@ galaxy.add(dirLight);
 
 dirLight.color.setHSL(0.1, 0.7, 0.5);
 
-var textureFlare0 = texture.load("http://www.marklorofficiel.com/wp-content/uploads/2017/12/centre-galaxie.png");
+var textureFlare0 = texture.load("https://s13.postimg.org/mdpx2hlt3/centre-galaxie-256x256.png");
 
 function addLight(h, s, l, x, y, z) {
 
@@ -189,7 +189,7 @@ var systemeLight = new THREE.PointLight(0xffffff, 1.5, 1000);
 
 var systemeVert = new THREE.Object3D();
 var lensVert = new THREE.LensFlare(
-	texture.load("http://www.marklorofficiel.com/wp-content/uploads/2017/12/vert.png"),
+	texture.load("https://s13.postimg.org/klwy7kuqf/blanc.png"),
 	100,
 	0.0,
 	THREE.AdditiveBlending
@@ -203,7 +203,7 @@ systemeVert.position.set(-5, -0.8, 15);
 
 var systemeBleu = new THREE.Object3D();
 var lensBleu = new THREE.LensFlare(
-	texture.load("http://www.marklorofficiel.com/wp-content/uploads/2017/12/bleu.png"),
+	texture.load("https://s13.postimg.org/klwy7kuqf/blanc.png"),
 	100,
 	0.0,
 	THREE.AdditiveBlending
@@ -215,7 +215,7 @@ systemeBleu.position.set(17, -0.8, 0);
 
 var systemeRouge = new THREE.Object3D();
 var lensRouge = new THREE.LensFlare(
-	texture.load("http://www.marklorofficiel.com/wp-content/uploads/2017/12/rouge.png"),
+	texture.load("https://s13.postimg.org/klwy7kuqf/blanc.png"),
 	100,
 	0.0,
 	THREE.AdditiveBlending
@@ -225,7 +225,7 @@ systemeRouge.position.set(-13, -0.8, 6);
 // systeme jaune
 var systemeJaune = new THREE.Object3D();
 var lensJaune = new THREE.LensFlare(
-	texture.load("http://www.marklorofficiel.com/wp-content/uploads/2017/12/jaune.png"),
+	texture.load("https://s13.postimg.org/klwy7kuqf/blanc.png"),
 	100,
 	0.0,
 	THREE.AdditiveBlending
@@ -237,7 +237,7 @@ systemeJaune.position.set(9, -0.4, -18);
 
 var systemeBleuClair = new THREE.Object3D();
 var lensBleuClair = new THREE.LensFlare(
-	texture.load("http://www.marklorofficiel.com/wp-content/uploads/2017/12/bleucl.png"),
+	texture.load("https://s13.postimg.org/klwy7kuqf/blanc.png"),
 	100,
 	0.0,
 	THREE.AdditiveBlending
@@ -249,7 +249,7 @@ systemeBleuClair.position.set(11, 0.4, 13);
 
 var systemeBlanc = new THREE.Object3D();
 var lensBlanc = new THREE.LensFlare(
-	texture.load("http://www.marklorofficiel.com/wp-content/uploads/2017/12/blanc.png"),
+	texture.load("https://s13.postimg.org/klwy7kuqf/blanc.png"),
 	100,
 	0.0,
 	THREE.AdditiveBlending
@@ -276,7 +276,7 @@ for (var i = 0; i < 20000; i++) {
 
 var starsMaterial = new THREE.PointsMaterial({
 	size: 8,
-	map: texture.load('http://www.marklorofficiel.com/wp-content/uploads/2017/12/blanc.png'),
+	map: texture.load('https://s13.postimg.org/klwy7kuqf/blanc.png'),
 	blending: THREE.AdditiveBlending,
 	transparent: true
 
