@@ -1,0 +1,30 @@
+{
+  "name": "3d-galaxy",
+  "version": "2.0.0",
+  "description": "New version of my 3d galaxy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtGM/THREEJS-galaxy.git"
+  },
+  "author": "ArtGM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArtGM/THREEJS-galaxy/issues"
+  },
+  "homepage": "https://github.com/ArtGM/THREEJS-galaxy#readme",
+  "dependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "babelify": "^10.0.0",
+    "browser-sync": "^2.26.7",
+    "browserify": "^16.5.0",
+    "gulp": "^4.0.2",
+    "three": "^0.113.2",
+    "uglify-js": "^3.7.7",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}
