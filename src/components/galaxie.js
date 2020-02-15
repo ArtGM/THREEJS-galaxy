@@ -1,8 +1,7 @@
 import * as THREE from 'three'
-import { Lensflare } from 'three/examples/js/objects/Lensflare'
+import { Lensflare, LensflareElement } from './Lensflare'
 
 var galaxie = document.getElementById('galaxie')
-console.log('galac')
 var renderer = new THREE.WebGLRenderer({
   alpha: true,
   antialias: true
@@ -168,12 +167,15 @@ function addLight (h, s, l, x, y, z) {
   var flareColor = new THREE.Color(0xffffff)
   flareColor.setHSL(h, s, l + 0.2)
 
-  var lensFlare = new Lensflare(textureFlare0, 1150, 0.0, THREE.AdditiveBlending, flareColor)
+  var lensFlare = new LensflareElement(textureFlare0, 1150, 0.0, THREE.AdditiveBlending, flareColor)
 
-  lensFlare.position.copy(light.position)
+  console.log(lensFlare)
+
+  //lensFlare.position.set(x, y, z)
 
   galaxy.add(lensFlare)
 }
+
 addLight(1, 0.8, 0.8, 0, -0.8, 0)
 
 //Ajout des systèmes cliquables
@@ -183,7 +185,7 @@ var systemeLight = new THREE.PointLight(0xffffff, 1.5, 1000)
 //systeme Vert
 
 var systemeVert = new THREE.Object3D()
-var lensVert = new Lensflare(
+var lensVert = new LensflareElement(
   texture.load('https://s13.postimg.org/klwy7kuqf/blanc.png'),
   100,
   0.0,
@@ -195,7 +197,7 @@ systemeVert.position.set(-5, -0.8, 15)
 // systeme Bleu
 
 var systemeBleu = new THREE.Object3D()
-var lensBleu = new Lensflare(
+var lensBleu = new LensflareElement(
   texture.load('https://s13.postimg.org/klwy7kuqf/blanc.png'),
   100,
   0.0,
@@ -207,7 +209,7 @@ systemeBleu.position.set(17, -0.8, 0)
 // systeme Rouge
 
 var systemeRouge = new THREE.Object3D()
-var lensRouge = new Lensflare(
+var lensRouge = new LensflareElement(
   texture.load('https://s13.postimg.org/klwy7kuqf/blanc.png'),
   100,
   0.0,
@@ -217,7 +219,7 @@ systemeRouge.add(systemeLight, lensRouge)
 systemeRouge.position.set(-13, -0.8, 6)
 // systeme jaune
 var systemeJaune = new THREE.Object3D()
-var lensJaune = new Lensflare(
+var lensJaune = new LensflareElement(
   texture.load('https://s13.postimg.org/klwy7kuqf/blanc.png'),
   100,
   0.0,
@@ -229,7 +231,7 @@ systemeJaune.position.set(9, -0.4, -18)
 //systeme bleu clair
 
 var systemeBleuClair = new THREE.Object3D()
-var lensBleuClair = new Lensflare(
+var lensBleuClair = new LensflareElement(
   texture.load('https://s13.postimg.org/klwy7kuqf/blanc.png'),
   100,
   0.0,
@@ -241,7 +243,7 @@ systemeBleuClair.position.set(11, 0.4, 13)
 //systeme blanc
 
 var systemeBlanc = new THREE.Object3D()
-var lensBlanc = new Lensflare(
+var lensBlanc = new LensflareElement(
   texture.load('https://s13.postimg.org/klwy7kuqf/blanc.png'),
   100,
   0.0,
