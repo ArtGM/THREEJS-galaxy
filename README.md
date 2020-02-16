@@ -2,12 +2,14 @@
 
 a galaxy made with THREE.js
 
-## INSTALL
+### INSTALL
+
+clone repo
 
 `cd THREEJS-galaxy `
 
 `npm install`
 
-## RUN
+### RUN
 
-Open index.html in browser
+`npm run watch`
