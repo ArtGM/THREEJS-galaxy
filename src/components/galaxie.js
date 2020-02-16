@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { Lensflare, LensflareElement } from './Lensflare'
+import { LensflareElement } from './Lensflare'
 
 var galaxie = document.getElementById('galaxie')
 var renderer = new THREE.WebGLRenderer({
@@ -13,9 +13,6 @@ galaxie.appendChild(renderer.domElement)
 var scene = new THREE.Scene()
 scene.add(new THREE.AmbientLight(0xffffff))
 
-//glowing scene
-//var effetBrillant = new THREE.Scene();
-//effetBrillant.add(new THREE.AmbientLight(0xffffff));
 var camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 10000)
 camera.position.set(1, 20, 40)
 camera.rotation.x = -30 * Math.PI / 180
@@ -25,7 +22,7 @@ function random () {
   return Math.random() * 2 - 1
 }
 
-function creerSpirale (amount, step) {
+function createSpiral (amount, step) {
   var sommets = []
 
   for (var i = 2000; i < amount; i += step) {
@@ -46,7 +43,7 @@ function creerSpirale (amount, step) {
   return spirale
 }
 
-function creerTexture (from, to) {
+function createTexture (from, to) {
   var canvas = document.createElement('canvas')
   canvas.width = 16
   canvas.height = 16
@@ -60,95 +57,50 @@ function creerTexture (from, to) {
 }
 
 //
-var galaxy = new THREE.Object3D()
-var texture = new THREE.TextureLoader()
-//
-// Brouillard
-//
-var spirale = creerSpirale(20000, 10)
-var material = new THREE.PointsMaterial({
-  size: 4,
-  map: creerTexture('rgba( 91,50,230,0.3 )', 'rgba( 0,0,0,0 )'),
-  depthWrite: false,
-  transparent: true
-})
+const galaxy = new THREE.Object3D()
+const texture = new THREE.TextureLoader()
 
-var points = new THREE.Points(spirale, material)
+function createBranch (pointsNb, pointsSize, materialSize, materialColor, additiveBlending, isInvert) {
+  let spiral = createSpiral(pointsNb, pointsSize)
+  let material = new THREE.PointsMaterial({
+    size: materialSize,
+    map: createTexture(materialColor[0], materialColor[1]),
+    depthWrite: false,
+    transparent: true,
+    blending: additiveBlending ? THREE.AdditiveBlending : THREE.NormalBlending
+  })
+  let points = new THREE.Points(spiral, material)
+  points.rotation.y = isInvert ? Math.PI : ''
+  galaxy.add(points)
+}
 
-galaxy.add(points)
+/* -------------------------------------------------------------------------- */
+/*                                     Fog                                    */
+/* -------------------------------------------------------------------------- */
 
-var spirale = creerSpirale(20000, 10)
-var material = new THREE.PointsMaterial({
-  size: 4,
-  map: creerTexture('rgba( 91,50,230,0.3 )', 'rgba( 0,0,0,0 )'),
-  depthWrite: false,
-  transparent: true
-})
+createBranch(20000, 15, 4, [ 'rgba(255, 255, 255, 0.2)', 'rgba(0,0,0,0)' ], false, false)
 
-var points = new THREE.Points(spirale, material)
-points.rotation.y = Math.PI
-galaxy.add(points)
-//
-//moyenne étoiles
-//
-var spirale = creerSpirale(20000, 4)
-var material = new THREE.PointsMaterial({
-  size: 0.4,
-  map: creerTexture('rgba( 255,255,255,1 )', 'rgba( 0,0,0,0 )'),
-  blending: THREE.AdditiveBlending,
-  depthWrite: false,
-  transparent: true
-})
+createBranch(20000, 10, 4, [ 'rgba(234, 196, 213, 0.3)', 'rgba(0,0,0,0)' ], false, true)
 
-var points = new THREE.Points(spirale, material)
+/* -------------------------------------------------------------------------- */
+/*                                Medium stars                                */
+/* -------------------------------------------------------------------------- */
 
-galaxy.add(points)
+createBranch(20000, 4, 0.4, [ 'rgba(255, 255, 255, 1)', 'rgba(0,0,0,0)' ], true, false)
 
-var spirale = creerSpirale(20000, 4)
-var material = new THREE.PointsMaterial({
-  size: 0.4,
-  map: creerTexture('rgba(255,255,255,1)', 'rgba(0,0,0,0)'),
-  blending: THREE.AdditiveBlending,
-  depthWrite: false,
-  transparent: true
-})
+createBranch(20000, 4, 0.4, [ 'rgba(255, 255, 255, 1)', 'rgba(0,0,0,0)' ], true, true)
 
-var points = new THREE.Points(spirale, material)
-points.rotation.y = Math.PI
-galaxy.add(points)
+/* -------------------------------------------------------------------------- */
+/*                                Smalls stars                                */
+/* -------------------------------------------------------------------------- */
 
-//
+createBranch(20000, 0.2, 0.25, [ 'rgba(141, 169, 183,1)', 'rgba(0,0,0,0)' ], true, false)
 
-//
+createBranch(20000, 0.2, 0.25, [ 'rgba(234,228,119,1)', 'rgba(0,0,0,0)' ], true, true)
 
-var spirale = creerSpirale(20000, 0.2)
-var material = new THREE.PointsMaterial({
-  size: 0.25,
-  map: creerTexture('rgba(209,64,9,1)', 'rgba(0,0,0,0)'),
-  blending: THREE.AdditiveBlending,
-  depthWrite: false,
-  transparent: true
-})
-
-var points = new THREE.Points(spirale, material)
-
-galaxy.add(points)
-
-var spirale = creerSpirale(20000, 0.2)
-
-var material = new THREE.PointsMaterial({
-  size: 0.25,
-  map: creerTexture('rgba(209,64,9,1)', 'rgba(0,0,0,0)'),
-  blending: THREE.AdditiveBlending,
-  depthWrite: false,
-  transparent: true
-})
-
-var points = new THREE.Points(spirale, material)
-points.rotation.y = Math.PI
-galaxy.add(points)
-
-//Centre galaxie
+/* -------------------------------------------------------------------------- */
+/*                                Galaxy Center                               */
+/* -------------------------------------------------------------------------- */
 
 var dirLight = new THREE.DirectionalLight(0xffffff, 0.05)
 dirLight.position.set(0, 0, 0).normalize()
